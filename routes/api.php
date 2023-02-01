@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'authController@authenticate')->name('login');
 Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
 Route::get('/dashboard', 'authController@dashboard')->middleware('auth:sanctum');
+
 //->middleware('jwt.auth');
