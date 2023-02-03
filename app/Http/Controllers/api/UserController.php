@@ -49,7 +49,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        //requête Eloquent
+
     }
 
     /**
@@ -84,5 +85,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function getInfos($userId)
+    {
+        //requete eloquent
+        // $user = User::where('id', $userId)->first();
+        $user = User::with('role')->where('id', $userId)->first();
+        return response()->json(['user' => $user]);
     }
 }
