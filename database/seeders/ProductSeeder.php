@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Detail;
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,9 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
-        Detail::factory(10)->create();
-
-        User::factory()->count(10)->create();
+        Product::factory(20)->create();
     }
 }

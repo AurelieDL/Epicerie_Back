@@ -17,16 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //   User::factory(10)->create();
-        $user = User::factory()->make([
-            'name' => 'Abigail Otwell',
-            'email' => 'a@a.com',
-            'password' => Hash::make('0000'),
-            'role' => '1',
-            'role_id' => '2',
-            'detail_id' => '3',
+        $this->call([
+            RoleSeeder::class,
+            StatusSeeder::class,
+            UserSeeder::class,
+            SupplierSeeder::class,
+            ProductSeeder::class,
 
         ]);
-        $user->save();
     }
 }
