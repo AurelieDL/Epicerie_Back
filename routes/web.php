@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/ocr', function () {
+    return view('ocr');
+});
+
+Route::post('/ocr', function () {
+    return view('ocr');
+});
