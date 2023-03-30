@@ -21,6 +21,6 @@ Route::get('/user-info/{id}', 'UserController@getInfos')->middleware('auth:sanct
 
 Route::get('/dashboard', 'authController@dashboard')->middleware('auth:sanctum');
 
-Route::get('/products', 'ProductController@index')->middleware('auth:sanctum');
+Route::apiResource('products', ProductController::class);
 
 //->middleware('jwt.auth');
