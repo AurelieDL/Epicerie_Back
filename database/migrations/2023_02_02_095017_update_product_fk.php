@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('supplier_id');
+            $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers');
 
-            $table->integer('status_id');
+            $table->integer('status_id')->unsigned()->nullable();
             $table->foreign('status_id')->references('id')->on('status');
         });
     }

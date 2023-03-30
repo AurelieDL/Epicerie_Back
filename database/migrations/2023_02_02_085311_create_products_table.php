@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('tva');
             $table->float('margin_rate');
             $table->float('price_ttc');
-            $table->integer('created_by');
+            $table->integer('created_by')->unsigned()->nullable();
 
             $table->foreign('created_by')->references('id')->on('users');
         });

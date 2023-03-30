@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', 'authController@authenticate')->name('login');
-Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
+Route::get('/user', 'authController@me')->middleware('auth:sanctum');
+// Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
 Route::get('/user-info/{id}', 'UserController@getInfos')->middleware('auth:sanctum');
 
 Route::get('/dashboard', 'authController@dashboard')->middleware('auth:sanctum');
