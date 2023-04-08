@@ -30,8 +30,6 @@ class ProductController extends Controller
     {
 
         $userConnected = auth()->user();
-        Log::info('user connected produit');
-        Log::info(json_encode($userConnected));
         $newProduct = new Product();
         $newProduct->name = $request->name;
         $newProduct->quantity = $request->quantity;
@@ -41,7 +39,7 @@ class ProductController extends Controller
         $newProduct->margin_rate = $request->margin_rate;
         $newProduct->price_ttc = $request->price_ttc;
         $newProduct->supplier_id = $request->supplier;
-        $newProduct->created_by = 1;
+        $newProduct->created_by = $userConnected->id;
         $newProduct->status_id = 1;
 
         $newProduct->save();

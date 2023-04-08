@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->words(2, true),
             'quantity' => fake()->randomFloat(2, 1, 30),
-            'packaging' => 'kilo',
+            'packaging' => 'Kilo',
             'price_ht' => fake()->randomFloat(2, 1, 10),
             'tva' => 20.00,
             'margin_rate' => 20.00,

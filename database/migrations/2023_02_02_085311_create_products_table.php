@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('quantity');
-            $table->enum('packaging', ['kilo','pack','unit','bottle','can']);
+            $table->enum('packaging', ['Kilo', 'Pack', 'Unité', 'Bouteille', 'Canette']);
             $table->float('price_ht');
             $table->float('tva');
             $table->float('margin_rate');
@@ -26,12 +26,6 @@ return new class extends Migration
 
             $table->foreign('created_by')->references('id')->on('users');
         });
-
-
-            
-       
-
-
     }
 
     /**
