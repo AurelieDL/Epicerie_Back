@@ -21,20 +21,16 @@ class StatusSeeder extends Seeder
                 'name' => 'actif',
                 'last_update' => '2023-02-02'
             ),
-
             array(
                 'id' => '2',
                 'name' => 'archivé',
                 'last_update' => '2023-02-02'
             ),
-
             array(
                 'id' => '3',
-                'name' => 'supprimé',
+                'name' => 'plus en stock',
                 'last_update' => '2023-02-02'
             ),
-
-
         );
 
         foreach ($status as $statu) {

@@ -14,9 +14,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('status', 'supplier', 'creator')->get();
+        $products = Product::withTrashed()->with('status', 'supplier', 'creator');
+
+        if ($request->filled('search')) {
+            $products = $products->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $itemsPerPage = $request->get('itemsPerPage', -1);
+        if ($itemsPerPage === -1 || $itemsPerPage === '-1') {
+            $itemsPerPage = $products->count();
+        }
+
+        $products = $products->paginate($itemsPerPage);
+
         return $products;
     }
 
@@ -76,6 +88,22 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product = $product->delete();
+        return $product;
+    }
+    
+    public function restore(Product $product)
+    {
+        $product = $product->restore();
+        return $product;
+    }
+
+    public function permanentDelete($id)
+    {
+        $product = Product::withTrashed()
+                        ->where('id', $id)
+                        ->first();
+
+        $product->forceDelete();
     }
 }
