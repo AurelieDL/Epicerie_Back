@@ -24,6 +24,7 @@ Route::get('/user-info/{id}', 'UserController@getInfos')->middleware('auth:sanct
 
 Route::get('/dashboard', 'authController@dashboard')->middleware('auth:sanctum');
 
+
 Route::apiResource('products', ProductController::class)->middleware('auth:sanctum');
 Route::get('product/restore/{product}', 'ProductController@restore')->middleware('auth:sanctum');
 Route::delete('product/permanent-delete/{product}', 'ProductController@permanentDelete')->middleware('auth:sanctum', 'admin');

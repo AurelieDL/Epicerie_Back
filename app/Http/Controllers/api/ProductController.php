@@ -40,21 +40,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $request->validate([
+                'name'     => 'required|string',
+                'quantity'      => 'required|numeric',
+                'price_ht'     => 'required|numeric',
+                'vat'     => 'required|numeric',
+                'margin_rate' => 'required|numeric',
+                'price_ttc' => 'required|numeric',
+            ]);
+            $userConnected = auth()->user();
+            $newProduct = new Product();
+            $newProduct->name = $request->name;
+            $newProduct->quantity = $request->quantity;
+            $newProduct->packaging = $request->packaging;
+            $newProduct->price_ht = $request->price_ht;
+            $newProduct->tva = $request->vat;
+            $newProduct->margin_rate = $request->margin_rate;
+            $newProduct->price_ttc = $request->price_ttc;
+            $newProduct->supplier_id = $request->supplier;
+            $newProduct->created_by = $userConnected->id;
+            $newProduct->status_id = 1;
 
-        $userConnected = auth()->user();
-        $newProduct = new Product();
-        $newProduct->name = $request->name;
-        $newProduct->quantity = $request->quantity;
-        $newProduct->packaging = $request->packaging;
-        $newProduct->price_ht = $request->price_ht;
-        $newProduct->tva = $request->vat;
-        $newProduct->margin_rate = $request->margin_rate;
-        $newProduct->price_ttc = $request->price_ttc;
-        $newProduct->supplier_id = $request->supplier;
-        $newProduct->created_by = $userConnected->id;
-        $newProduct->status_id = 1;
+            $newProduct->save();
 
-        $newProduct->save();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'une erreur est survenu lors de l\ajout de votre article'], 404);
+        }
     }
 
     /**
@@ -65,7 +77,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        Log::info('test show');
+        return $product;
     }
 
     /**

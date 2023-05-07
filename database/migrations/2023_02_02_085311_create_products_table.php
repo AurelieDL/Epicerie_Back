@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('quantity');
-            $table->enum('packaging', ['Kilo', 'Pack', 'Unité', 'Bouteille', 'Canette']);
+            $table->string('packaging');
             $table->float('price_ht');
             $table->float('tva');
             $table->float('margin_rate');
